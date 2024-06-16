@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "876551877270",
+    "project_id": "chatbotapp-90298",
+    "storage_bucket": "chatbotapp-90298.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876551877270:android:42b0a2b801abc68e4088b7",
+        "android_client_info": {
+          "package_name": "com.learning.chatbotapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqeTkmwzoXywl84Juw_OAitCKOCQfdWzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876551877270:android:f8e443133b030b4b4088b7",
+        "android_client_info": {
+          "package_name": "com.learning.chatroomapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqeTkmwzoXywl84Juw_OAitCKOCQfdWzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
