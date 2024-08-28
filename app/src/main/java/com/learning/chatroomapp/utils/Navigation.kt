@@ -65,7 +65,7 @@ fun NavigationGraph(
         navController = navController,
         startDestination = Screen.LoginScreen.route
     ) {
-        composableWithSlidingTransitions<Unit>(Screen.SignupScreen.route) {
+        composableWithSlidingTransitions(Screen.SignupScreen.route) {
             SignUpScreen(
                 onNavigateToSignIn = { navController.navigate(Screen.LoginScreen.route) },
                 onSignUpSuccess = {
@@ -78,7 +78,7 @@ fun NavigationGraph(
                 authViewModel = authViewModel
             )
         }
-        composableWithSlidingTransitions<Unit>(Screen.LoginScreen.route){
+        composableWithSlidingTransitions(Screen.LoginScreen.route){
             SignInScreen(
                 onNavigateToSignUp = { navController.navigate(Screen.SignupScreen.route) },
                 onSignInSuccess = {
@@ -104,9 +104,9 @@ fun NavigationGraph(
     }
 }
 
-private inline fun <reified T> NavGraphBuilder.composableWithSlidingTransitions(
+private fun NavGraphBuilder.composableWithSlidingTransitions(
     route: String,
-    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
 ) {
     composable(
         route = route,
