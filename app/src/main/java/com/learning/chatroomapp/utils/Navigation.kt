@@ -2,7 +2,12 @@ package com.learning.chatroomapp.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,14 +36,14 @@ fun NavigationGraph(
         navController = navController,
         startDestination = Screen.LoginScreen.route
     ) {
-        composable(Screen.SignupScreen.route) {
+        composableWithSlidingTransitions<Unit>(Screen.SignupScreen.route) {
             SignUpScreen(
                 onNavigateToSignIn = { navController.navigate(Screen.LoginScreen.route) },
                 onSignUpSuccess = { navController.navigate(Screen.ChatRoomsScreen.route) },
                 authViewModel = authViewModel
             )
         }
-        composable(Screen.LoginScreen.route) {
+        composableWithSlidingTransitions<Unit>(Screen.LoginScreen.route){
             SignInScreen(
                 onNavigateToSignUp = { navController.navigate(Screen.SignupScreen.route) },
                 onSignInSuccess = { navController.navigate(Screen.ChatRoomsScreen.route) },
@@ -56,4 +61,23 @@ fun NavigationGraph(
             )
         }
     }
+}
+
+private inline fun <reified T> NavGraphBuilder.composableWithSlidingTransitions(
+    route: String,
+    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+) {
+    composable(
+        route = route,
+        enterTransition = {
+            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Down, tween(700))
+        },
+        popExitTransition = {
+            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Up, tween(700))
+        },
+        exitTransition = {
+            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Down, tween(700))
+        },
+        content = content
+    )
 }
